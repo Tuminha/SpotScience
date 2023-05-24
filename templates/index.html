@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PyPaperBot Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .search-form {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .search-form input[type="text"] {
+      padding: 10px;
+      width: 400px;
+      margin-right: 10px;
+    }
+
+    .search-form select {
+      padding: 10px;
+    }
+
+    .search-form button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>PyPaperBot Search</h1>
+
+  <form action="/search" method="post" class="search-form">
+    <input type="text" name="query" placeholder="Enter your query" required>
+    <select name="profile">
+      <option value="Daniel Rodrigo Mode">Daniel Rodrigo Mode</option>
+      <option value="Leti Sala Mode">Leti Sala Mode</option>
+      <option value="Robles Mode">Robles Mode</option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
+</body>
+</html>
