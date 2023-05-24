@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import subprocess
 import os
 import platform
+from PyPaperBot.proxy import proxy
 
 app = Flask(__name__)
 

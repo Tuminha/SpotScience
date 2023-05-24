@@ -25,6 +25,7 @@ pyChainedProxy==1.2
 pylint==2.7.1
 PyPaperBot==1.2.2
 pyparsing==3.0.9
+PySocks==1.7.1
 python-dateutil==2.8.2
 pytz==2023.3
 ratelimit==2.2.1
