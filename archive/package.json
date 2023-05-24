@@ -1,0 +1,22 @@
+{
+    "name": "spotscience",
+    "version": "1.0.0",
+    "description": "Server code for SpotScience project",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "adm-zip": "^0.5.3",
+        "axios": "^0.24.0",
+        "bibtex-parse-js": "^0.0.23",
+        "csv-writer": "1.6.0",
+        "express": "^4.17.1"
+    },
+    "main": "app.js",
+    "keywords": [
+        "periospot"
+    ],
+    "author": "Tuminha",
+    "license": "ISC"
+}

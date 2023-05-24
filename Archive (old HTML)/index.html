@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PyPaperBot Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .search-form {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .search-form input[type="text"] {
+      padding: 10px;
+      width: 400px;
+      margin-right: 10px;
+    }
+
+    .search-form select {
+      padding: 10px;
+    }
+
+    .search-form button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>PyPaperBot Search</h1>
+
+  <form id="searchForm" class="search-form">
+    <input type="text" id="query" placeholder="Enter your query">
+    <select id="mode">
+      <option value="daniel_rodrigo">Daniel Rodrigo Mode</option>
+      <option value="leti_sala">Leti Sala Mode</option>
+      <option value="robles">Robles Mode</option>
+    </select>
+    <button type="submit" id="searchButton">Search</button>
+  </form>
+
+  <script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) { event.preventDefault();
+      event.preventDefault();  // Prevent form submission
+      var query = document.getElementById('query').value;
+      var mode = document.getElementById('mode').value;
+
+      // Pass query and mode to your Python backend for further processing
+      // You can use AJAX or fetch() to send a request to your backend API
+
+      // Example using fetch() (assuming your backend API is at /search endpoint):
+      fetch('/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          query: query,
+          mode: mode
+        })
+      })
+      .then(function(response) {
+        // Handle the response from the backend
+        if (response.ok) {
+          window.location.href = '/progress';  // Redirect to the progress page
+        } else {
+          console.error('Search failed');
+        }
+      })
+      .catch(function(error) {
+        // Handle any error that occurs during the request
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
