@@ -1,6 +1,8 @@
 import socket
 import socks
 from .Downloader import downloadPapers
+import requests
+
 
 
 def proxy(pchain):
