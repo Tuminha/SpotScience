@@ -55,9 +55,10 @@ def search():
     # Return to home directory
     os.chdir('..')
 
-    # Print all files in the directory
+   # Print all files in the directory
     all_files = os.listdir(download_path)
     print(f"All files: {all_files}")
+
 
     # Create the files list
     files = [os.path.join(download_path, filename) for filename in all_files if filename.endswith('.pdf') and query in filename]
