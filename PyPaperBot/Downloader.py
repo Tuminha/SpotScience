@@ -65,19 +65,19 @@ def downloadPapers(papers, dwnl_dir, num_limit, SciHub_URL=None):
 
             pdf_dir = getSaveDir(dwnl_dir, p.getFileName())
 
-            faild = 0
+            fail_count = 0
             url = ""
-            while not p.downloaded and faild != 4:
+            while not p.downloaded and fail_count < 4:
                 try:
                     dwn_source = 1  # 1 scihub 2 scholar
-                    if faild == 0 and p.DOI is not None:
+                    if fail_count == 0 and p.DOI is not None:
                         url = URLjoin(NetInfo.SciHub_URL, p.DOI)
-                    if faild == 1 and p.scholar_link is not None:
+                    elif fail_count == 1 and p.scholar_link is not None:
                         url = URLjoin(NetInfo.SciHub_URL, p.scholar_link)
-                    if faild == 2 and p.scholar_link is not None and p.scholar_link[-3:] == "pdf":
+                    elif fail_count == 2 and p.scholar_link is not None and p.scholar_link[-3:] == "pdf":
                         url = p.scholar_link
                         dwn_source = 2
-                    if faild == 3 and p.pdf_link is not None:
+                    elif fail_count == 3 and p.pdf_link is not None:
                         url = p.pdf_link
                         dwn_source = 2
 
@@ -94,8 +94,10 @@ def downloadPapers(papers, dwnl_dir, num_limit, SciHub_URL=None):
                                 content_type = r.headers.get('content-type')
 
                         if 'application/pdf' in content_type:
-                            paper_files.append(saveFile(pdf_dir, r.content, p, dwn_source))
+                            saveFile(pdf_dir, r.content, p, dwn_source)
+                            paper_files.append(pdf_dir)
+                            num_downloaded += 1
                 except Exception:
                     pass
 
-                faild += 1
+                fail_count += 1
