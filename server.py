@@ -11,7 +11,8 @@ import tempfile
 if platform.system() == 'Windows':
     dwn_dir = os.path.join(os.path.expanduser("~"), 'Downloads')
 else:
-    dwn_dir = os.path.expanduser("~/Downloads")
+    dwn_dir = '/tmp'
+
 
 app = Flask(__name__)
 
