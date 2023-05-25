@@ -25,6 +25,11 @@ def search():
     # Get form data
     query = request.form['query']
     profile = request.form['profile']
+    download_path = request.form['download_path']
+
+    # Use default download directory if no path is provided
+    if not download_path:
+        download_path = dwn_dir
 
     # Map profile to scholar_pages and min_year
     profile_map = {
@@ -43,19 +48,19 @@ def search():
     os.chdir('PyPaperBot')
 
     # Run PyPaperBot with form data
-    print(f"Running PyPaperBot with query: {query}, scholar_pages: {pages}, min_year: {min_year}, dwn_dir: {dwn_dir}, scihub_mirror: {scihub_mirror}")
-    result = subprocess.call(['python', '-m', 'PyPaperBot', f'--query={query}', f'--scholar-pages={pages}', f'--min-year={min_year}', f'--dwn-dir={dwn_dir}', f'--scihub-mirror={scihub_mirror}'])
+    print(f"Running PyPaperBot with query: {query}, scholar_pages: {pages}, min_year: {min_year}, dwn_dir: {download_path}, scihub_mirror: {scihub_mirror}")
+    result = subprocess.call(['python', '-m', 'PyPaperBot', f'--query={query}', f'--scholar-pages={pages}', f'--min-year={min_year}', f'--dwn-dir={download_path}', f'--scihub-mirror={scihub_mirror}'])
     print(f"Result of PyPaperBot call: {result}")
 
     # Return to home directory
     os.chdir('..')
 
     # Print all files in the directory
-    all_files = os.listdir(dwn_dir)
+    all_files = os.listdir(download_path)
     print(f"All files: {all_files}")
 
     # Create the files list
-    files = [os.path.join(dwn_dir, filename) for filename in all_files if filename.endswith('.pdf') and query in filename]
+    files = [os.path.join(download_path, filename) for filename in all_files if filename.endswith('.pdf') and query in filename]
 
     # Print the files list
     print(f"PDF files: {files}")
